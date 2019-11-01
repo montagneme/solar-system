@@ -1,0 +1,57 @@
+.system_to{
+    transform: translateX(-600px) !important;
+    opacity: 0;
+}
+.intro_to{
+    transform: translateY(-200px);
+    opacity: 0;
+}
+.introbox_enter{
+    transform: translateY(0px);
+    opacity: 1;
+}
+.introbox_to{
+    transform: translateY(-1500px);
+    opacity: 0;
+}
+.ball_img_enter{
+    opacity: 1;
+    transform: scale(1);
+}
+.ball_img_stable{
+    transform: translateX(-450px);
+}
+.ball_name_to{
+    opacity: 0;
+}
+.ball_intro_enter{
+    opacity: 1;
+    transform: translateX(250px);
+}
+.ball_intro_process_start{
+    width: 0% !important;
+}
+.ball_intro_title_start{
+    opacity: 0;
+    transform: translateX(-100px);
+}
+.ball_intro_info_p_start{
+    opacity: 0;
+    transform: translateX(-100px);
+}
+.ball_intro_name_start{
+    opacity: 0;
+    transform: translateY(100px);
+}
+.ball_intro_attr_start{
+    opacity: 0;
+    transform: translateY(100px);
+}
+.ball_content_start{
+    opacity: 0;
+    transform: translateX(-200px);
+}
+.ball_content_span_start{
+    transform: translateY(30px) !important;
+    opacity: 0 !important;
+}

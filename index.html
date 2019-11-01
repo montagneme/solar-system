@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="animate.css">
+    <link rel="stylesheet" media="screen" href="./css/particle.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.js"></script>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <div id="body">
+        <div class="top">
+            <div class="space">
+                <div class="intro">
+                    <p>The Most Beautiful</p>
+                    <p>Solar System</p>
+                </div>
+                <img src="./img/people.png" alt="" class="people">
+                <div class="system">
+                    <img src="./img/son.png" alt="" class="sun">
+                    <div class="orbit" v-for="item in planet" :style="{width:item.orbit.w+'px',height:item.orbit.h+'px',left:'300px',top:300-item.orbit.h/2+'px',marginLeft:-item.orbit.w/2+'px',animation: 'orbit '+item.speed+'s linear infinite'}">
+                        <div class="ball_box" :style="{width:item.ball.w+'px',height:item.ball.h+'px',left:item.ball.l+'px',top:item.ball.t+'px'}">
+                            <img :src="'./img/'+item.img+'.png'" alt="" class="ball" :style="{width:item.ball.w+'px',height:item.ball.h+'px',animation: 'ball '+item.speed+'s linear infinite'}">
+                        </div>
+                    </div>
+                </div>
+                <div class="introbox" v-for="(item,index) in info" :key="index">
+                    <div class="ball_name">{{item.name}}</div>
+                    <img class="ball_img" :src="'./img/'+item.img+'.png'" :class="{ball_img_soil:index==4}"/>
+                    <div class="ball_intro">
+                        <div class="ball_intro_box">
+                            <div class="ball_intro_l">
+                                <p class="ball_intro_title ball_intro_title_start">Information</p>
+                                <ul>
+                                    <li class="ball_intro_info">
+                                        <div class="ball_intro_process_box">
+                                            <div class="ball_intro_process ball_intro_process_start" :style="{width:item.diameter_process}"></div>
+                                        </div>
+                                        <p class="ball_intro_info_p ball_intro_info_p_start">Diameter</p>
+                                    </li>
+                                    <li class="ball_intro_info">
+                                        <div class="ball_intro_process_box">
+                                            <div class="ball_intro_process ball_intro_process_start" :style="{width:item.quality_process}" style="background: linear-gradient(to right,#548efa,#76caf9);"></div>
+                                        </div>
+                                        <p class="ball_intro_info_p ball_intro_info_p_start">Quality</p>
+                                    </li>
+                                    <li class="ball_intro_info">
+                                        <div class="ball_intro_process_box">
+                                            <div class="ball_intro_process ball_intro_process_start" :style="{width:item.density_process}" style="background: linear-gradient(to right,#d9782d,#e5a230);"></div>
+                                        </div>
+                                        <p class="ball_intro_info_p ball_intro_info_p_start">Average Density</p>
+                                    </li>
+                                    <li class="ball_intro_info">
+                                        <div class="ball_intro_process_box">
+                                            <div class="ball_intro_process ball_intro_process_start" :style="{width:item.distance_process}"  style="background: linear-gradient(to right,#df5a53,#df7d60);"></div>
+                                        </div>
+                                        <p class="ball_intro_info_p ball_intro_info_p_start">Distance From Earth</p>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="ball_intro_r">
+                                <p class="ball_intro_title ball_intro_title_start">Name</p>
+                                <p class="ball_intro_name ball_intro_name_start" :style="{color:item.color}">{{item.name}}</p>
+                                <p class="ball_intro_attr ball_intro_attr_start">{{item.attr}}</p>
+                            </div>
+                        </div>
+                        <div class="ball_content_box">
+                            <div class="ball_content ball_content_start">
+                                <span v-for="(i,index) in item.content.split(' ')" class="ball_content_span ball_content_span_start">
+                                    {{i}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="./js/particle.min.js"></script>
+    <script src="./js/canvas_app.js"></script>
+    <script>
+        new Vue({
+            el:'#body',
+            data:{
+                info:[
+                    {
+                        scrollDown:5,
+                        scrollUp:0,
+                        img:'son',
+                        name:'The Sun',
+                        color:'#fdf9a4',
+                        attr:'Fixed star',
+                        diameter:'1392000km',
+                        quality:'1.9891×10³⁰kg',
+                        density:'1408kg/㎥',
+                        distance:'149600000km',
+                        diameter_process:'100%',
+                        quality_process:'100%',
+                        density_process:'100%',
+                        distance_process:'100%',
+                        content:`The sun is the center of the solar system, accounting for 99.86% of the total mass of the solar system. The eight planets, asteroids, meteors, comets, outer planets and interstellar dust in the solar system all revolve around the sun, while the sun revolves around the center of the galaxy.The sun is a star in the center of the solar system. It is almost an ideal sphere interwoven by hot plasma and magnetic field. The diameter of the sun is about 1392000 (1.392 × 10 ⁶) km, equivalent to 109 times of the diameter of the earth; its volume is about 1.3 million times of the earth; its mass is about 2 × 10 3 ⁰ kg (330000 times of the earth). In terms of chemical composition, about three-quarters of the mass of the sun is now hydrogen, and the rest is almost helium, including oxygen, carbon, neon, iron and other heavy elements with a mass of less than 2%. Light and heat are released into space by nuclear fusion.`
+                    },
+                    {
+                        scrollDown:15,
+                        scrollUp:10,
+                        img:'fire',
+                        name:'Mars',
+                        color:'#bc5d36',
+                        attr:'planet',
+                        diameter:'6794km',
+                        quality:'6.4219×10²³kg',
+                        density:'3.94g/cm³',
+                        distance:'2.68 A.U.',
+                        diameter_process:'5%',
+                        quality_process:'23%',
+                        density_process:'73%',
+                        distance_process:'12%', 
+                        content:`Mars is one of the eight planets in the solar system. It is the fourth planet in the solar system from the inside out. It belongs to the earth like planet, with a diameter of about 53% of the earth and a mass of 14% of the earth. The tilt angle and rotation period of rotation axis are similar to that of the earth, and one revolution is about twice the time of the earth's revolution. Orange red is the surface hematite (iron oxide). Mars is called "Mars star" in ancient Chinese books, while Mars is called "Mars star" in ancient Western (ancient Rome) as the only guardian star of Aries, not Scorpio.Mars is basically a desert planet, with dunes and gravels all over the surface and no stable liquid water body (on September 28, 2015, NASA announced that there is a small amount of water on Mars. According to AFP on July 25, 2018, researchers from the European Space Agency (ESA) said that the first liquid groundwater lake was found on Mars. The atmosphere dominated by carbon dioxide is thin and cold. Dust is suspended in it, and dust storms often occur every year. The polar cap of water ice and dry ice at both poles of Mars will increase and decrease with the seasons.`
+                    },
+                    {
+                        scrollDown:25,
+                        scrollUp:20,
+                        img:'water',
+                        name:'Mercury',
+                        color:'#81c7e5',
+                        attr:'planet',
+                        diameter:'4878km',
+                        quality:'3.3022×10²³kg',
+                        density:'5.427g/cm³',
+                        distance:'1.28 A.U.',
+                        diameter_process:'4%',
+                        quality_process:'20%',
+                        density_process:'94%',
+                        distance_process:'5%',
+                        content:`Mercury (English: Mercury, Latin: Mercury) is the closest planet to the sun among the eight planets in the solar system. China is called Chenxing. It has the largest orbit eccentricity of eight planets, smaller than Pluto. It circles the sun once every 87.968 Earth days, and it also rotates three times every 2.01 revolutions.Mercury has the largest orbital inclination among the planets in the solar system. The perihelion of mercury orbit has a precession of 43 arc seconds (angular seconds) more than that predicted by Newtonian mechanics every century. This phenomenon was not explained by Einstein's general relativity until the 20th century.Mercury is a earth like planet, because it is very close to the sun, so it will only appear in the early morning known as a Chenxing, or dusk as a faint star. Unless there is an eclipse, mercury is usually invisible in the sun.`
+                    },
+                    {
+                        scrollDown:35,
+                        scrollUp:30,
+                        img:'wood',
+                        name:'Jupiter',
+                        color:'#98886c',
+                        attr:'planet',
+                        diameter:'142984km',
+                        quality:'1.90×10²⁷kg',
+                        density:'1.326g/cm³',
+                        distance:'4.97 A.U.',
+                        diameter_process:'84%',
+                        quality_process:'81%',
+                        density_process:'24%',
+                        distance_process:'23%',
+                        content:`Jupiter is the largest and fastest rotating planet among the eight planets in the solar system, the fifth planet from the inside out. Its mass is one thousandth of that of the sun, 2.5 times the mass of the other seven planets in the solar system. Because Jupiter, Saturn, Uranus and Neptune are all gas planets, they are also called wood like planets (Jupiter and Saturn are called gas giant planets). Jupiter is a gas giant planet, accounting for 70% of the mass of all planets in the solar system. It is mainly composed of hydrogen, accounting for 75% of the total mass, followed by helium, accounting for 25% of the total mass. The rock core contains other heavier elements. What we see is usually the top of clouds in the atmosphere, with a pressure slightly higher than one atmosphere.`
+                    },
+                    {
+                        scrollDown:45,
+                        scrollUp:40,
+                        img:'soil',
+                        name:'Saturn',
+                        color:'#e5c67e',
+                        attr:'planet',
+                        diameter:'120540 km',
+                        quality:'5.6846×10²⁶kg',
+                        density:'0.687g/cm³',
+                        distance:'1,277,340,000 ～ 1,576,540,000km',
+                        diameter_process:'79%',
+                        quality_process:'65%',
+                        density_process:'14%',
+                        distance_process:'34%',
+                        content:`Saturn, one of the eight planets in the solar system, is sixth in the distance from the sun (from near to far). It is next to Jupiter in mass and diameter, and belongs to gas giant planet with Jupiter. In ancient Europe (ancient Greece), Saturn was named as Cronus (ancient Greek: K ό ό ό; English: Chronos), and in ancient China it was called Zhenxing.Saturn is mainly composed of hydrogen, with a small amount of helium and trace elements. The inner core includes rock and ice, and the outer part is surrounded by several layers of metal hydrogen and gas. The outer layer of the atmosphere can be seen in the appearance of bright rings of Saturn, although sometimes there is a long-term phenomenon. Saturn's wind speed is as high as 1800 km / h, which is significantly faster than that of Jupiter. Saturn's planet magnetic field is between the earth and Jupiter, and the air flow is very fast.`
+                    },
+                    {
+                        scrollDown:55,
+                        scrollUp:50,
+                        img:'gold',
+                        name:'Venus',
+                        color:'#de8343',
+                        attr:'planet',
+                        diameter:'12103.6km',
+                        quality:'4.869×10²⁴kg',
+                        density:'5.24g/cm³',
+                        distance:'2.98 A.U.',
+                        diameter_process:'15%',
+                        quality_process:'34%',
+                        density_process:'92%',
+                        distance_process:'14%',
+                        content:`Venus is one of the eight planets in the solar system. It is the second one in the order of being close to and far from the sun. It is 0.725 astronomical unit away from the sun. It is the nearest planet to earth (Mars is sometimes closer). The ancient Romans called Venus, the ancient Chinese called Changgeng, Qiming, Taibai or Taibai Venus, and the ancient Greek myth called Aphrodite. The revolution period is 224.71 earth day.In the night sky, the brightness is second only to that of the moon. Venus can reach its maximum brightness before sunrise or after sunset. It appears in the eastern sky in the early morning, known as "Qiming"; in the west of the sky in the evening, known as "Changgeng".`
+                    },
+                    {
+                        scrollDown:65,
+                        scrollUp:60,
+                        img:'sky',
+                        name:'Uranus',
+                        color:'#d2ecef',
+                        attr:'planet',
+                        diameter:'51118 km',
+                        quality:'8.6810×10²⁵kg',
+                        density:'1.318g/cm³',
+                        distance:'19.36 A.U.',
+                        diameter_process:'34%',
+                        quality_process:'48%',
+                        density_process:'23%',
+                        distance_process:'70%',
+                        content:`Uranus, one of the eight planets in the solar system, is the seventh planet (18.37-20.08 AU) from the inside to the outside of the solar system. Its volume ranks the third (larger than Neptune) in the solar system, and its mass ranks the fourth (smaller than Neptune), almost lying around the sun.The main components of Uranus' atmosphere are hydrogen, helium and methane. It is speculated that its interior may contain rich heavy elements. The mantle is composed of ice of methane and ammonia and may contain water. The core consists of ice and rock. Uranus is the coldest planet in the solar system, with a minimum temperature of 49K (- 224 ℃).`
+                    },
+                    {
+                        scrollDown:75,
+                        scrollUp:70,
+                        img:'sea',
+                        name:'Neptune',
+                        color:'#546cb0',
+                        attr:'planet',
+                        diameter:'49532 km',
+                        quality:'1.0247×10²⁶kg',
+                        density:'1.66g/cm³',
+                        distance:'28.95 A.U.',
+                        diameter_process:'33%',
+                        quality_process:'60%',
+                        density_process:'25%',
+                        distance_process:'95%',
+                        content:`Neptune is the distant planet among the eight planets in the solar system. According to the distance between the planet and the sun, Neptune is the eighth planet, the fourth in diameter and the third in mass. Neptune's brightness is only 7.85, which can only be seen in astronomical telescopes. Because of its light blue light, Westerners call it Neptune, the Roman god of the sea. In Chinese, translate it to Neptune.`
+                    },
+                    {
+                        scrollDown:85,
+                        scrollUp:80,
+                        img:'earth',
+                        name:'Earth',
+                        color:'#40598e',
+                        attr:'planet',
+                        diameter:'12756 km',
+                        quality:'5.965×10²⁴kg',
+                        density:'5507.85kg/m³',
+                        distance:'0 A.U.',
+                        diameter_process:'16%',
+                        quality_process:'38%',
+                        density_process:'52%',
+                        distance_process:'0%',
+                        content:`Earth is one of the eight planets in the solar system. It is the third planet in the order of near to far from the sun. It is also the earth like planet with the largest diameter, mass and density in the solar system, 150 million kilometers away from the sun. The earth rotates from west to East, and at the same time revolves around the sun. At present, it is 4-4.6 billion years old. It has a natural satellite, the moon, and they form a celestial system, the Earth Moon system. It originated in the primitive solar nebula 4.6 billion years ago.The earth has an equatorial radius of 6378.137 km, a polar radius of 6356.752 km, an average radius of about 6371 km, and an equatorial circumference of about 40076 km. It is an irregular ellipsoid with slightly flat poles and slightly bulging equator. The surface area of the earth is 510 million square kilometers, of which 71% are oceans and 29% are land. In space, the earth looks blue.There are core, mantle and shell structures in the interior of the earth, and hydrosphere, atmosphere and magnetic field outside the earth. At present, the earth is the only celestial body in the universe known to exist life. It is the home of millions of creatures, including human beings.`
+                    }
+                ],
+                top:0,
+                isTop:false,
+                isMove:false,
+                moveTimer:0,
+                fontTimer:0,
+                planet:[
+                    {
+                        img:'water',
+                        speed:5,
+                        orbit:{
+                            w:600,
+                            h:600
+                        },
+                        ball:{
+                            w:50,
+                            h:50,
+                            l:60,
+                            t:60
+                        }
+                    },
+                    {
+                        img:'gold',
+                        speed:7,
+                        orbit:{
+                            w:700,
+                            h:700
+                        },
+                        ball:{
+                            w:50,
+                            h:50,
+                            l:75,
+                            t:75
+                        }
+                    },
+                    {
+                        img:'earth',
+                        speed:9,
+                        orbit:{
+                            w:700,
+                            h:700
+                        },
+                        ball:{
+                            w:50,
+                            h:50,
+                            l:75,
+                            t:75
+                        }
+                    },
+                    {
+                        img:'fire',
+                        speed:11,
+                        orbit:{
+                            w:900,
+                            h:900
+                        },
+                        ball:{
+                            w:50,
+                            h:50,
+                            l:105,
+                            t:105
+                        }
+                    },
+                    {
+                        img:'wood',
+                        speed:13,
+                        orbit:{
+                            w:1100,
+                            h:1100
+                        },
+                        ball:{
+                            w:180,
+                            h:180,
+                            l:125,
+                            t:125
+                        }
+                    },
+                    {
+                        img:'soil',
+                        speed:15,
+                        orbit:{
+                            w:1300,
+                            h:1300
+                        },
+                        ball:{
+                            w:300,
+                            h:140,
+                            l:220,
+                            t:90
+                        }
+                    },
+                    {
+                        img:'sky',
+                        speed:17,
+                        orbit:{
+                            w:1700,
+                            h:1700
+                        },
+                        ball:{
+                            w:100,
+                            h:100,
+                            l:160,
+                            t:160
+                        }
+                    },
+                    {
+                        img:'sea',
+                        speed:19,
+                        orbit:{
+                            w:2000,
+                            h:2000
+                        },
+                        ball:{
+                            w:100,
+                            h:100,
+                            l:200,
+                            t:200
+                        }
+                    }
+                    
+                ],
+            },
+            created() {
+
+            },
+            mounted() {
+                this.event();
+                this.setSize();
+                this.a_s(0,()=>{
+                    $('#particles-js').css({
+                        opacity:'1'
+                    });
+                    $('.system').css({
+                        transform:'translateX(0px)'
+                    })
+                }).a(1000,()=>{
+                    $('.intro p').eq(0).css({
+                        transform:'translateY(0px)',
+                        opacity:'1'
+                    });
+                }).a(1000,()=>{
+                    $('.intro p').eq(1).css({
+                        transform:'translateY(0px)',
+                        opacity:'1'
+                    });
+                })
+            },
+            methods: {
+                //链式延迟函数 this.a_s().a().a()
+                a_s(time,callback){
+                    let s_time=0;
+                    return a(time,callback);
+                    function a(time,callback){
+                        s_time+=time;
+                        setTimeout(()=>{
+                            callback();
+                        },s_time);
+                        return {a};
+                    }
+                },
+                setSize(){
+                    let h=$(window).height();
+                    $('.space').css({
+                        height:h+'px'
+                    });
+                    $('.top').css({
+                        height:h+'px'
+                    });
+
+                },
+                event(){
+                    $(window).on('resize',()=>{
+                        this.setSize();
+                    })
+                    $(window).on('mousewheel',(ev)=>{
+                        let e=ev||event;
+                        let of_y=e.originalEvent.deltaY;
+                        let of_x=e.originalEvent.deltaX;
+                        if(!this.isMove){
+                            switch(true){
+                                case of_y>0:
+                                this.top+=5;
+                                this.isTop=false;
+                                break;
+                                case of_y<0:
+                                if(this.top>0){
+                                    this.top-=5;
+                                    this.isTop=true;
+                                }
+                                break;
+                                default:
+                                break;
+                            }
+                            for(let i=0;i<this.info.length;i++){
+                                if(this.isTop){   //往上的时候
+                                    if(this.top==this.info[i].scrollUp){
+                                        if(i==0){
+                                            this.moveing(2000);
+                                            this.introbox_to_up(i);
+                                            this.system_enter();
+                                        }else{
+                                            this.moveing(6000);
+                                            this.introbox_to_up(i);
+                                            this.introbox_enter(i-1);
+                                            break;
+                                        }
+                                    }
+                                }else{     //往下的时候
+                                    if(this.top==this.info[i].scrollDown){
+                                        if(i==0){
+                                            this.moveing(6000);
+                                            this.system_to();
+                                            this.introbox_enter(i);
+                                        }else{
+                                            this.moveing(6000);
+                                            this.introbox_to_down(i-1);
+                                            this.introbox_enter(i);
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                            // switch(this.top){
+                            //     case 0:
+                            //     if(this.isTop){   //是往上的时候
+                            //         this.moveing(2000);
+
+                            //         this.introbox_to_up(0);
+                            //         this.system_enter();
+                            //     }
+                            //     break;
+                            //     case 10:
+                            //     if(this.isTop){
+                            //         this.moveing(6000);
+
+                            //         this.introbox_to_up(1);
+                            //         this.introbox_enter(0);
+                            //     }
+                            //     break;
+                                
+                            //     case 5:
+                            //     if(!this.isTop){    //是往下的时候
+                            //         this.moveing(6000);
+
+                            //         this.system_to();
+                            //         this.introbox_enter(0);
+                            //     }
+                            //     break;
+                            //     case 15:
+                            //     if(!this.isTop){
+                            //         this.moveing(6000);
+
+                            //         this.introbox_to_down(0);
+                            //         this.introbox_enter(1);
+                            //     }
+                            //     break;
+                            // }
+                            console.log(this.top);
+                        }
+                        
+                    })
+                },
+                //滑动延迟函数
+                moveing(time){
+                    clearTimeout(this.moveTimer);
+                    this.isMove=true;
+                    this.moveTimer=setTimeout(()=>{
+                        this.isMove=false;
+                    },time)
+                },
+                system_to(){
+                    this.a_s(0,()=>{
+                        $('.system').addClass('system_to');
+                    }).a(500,()=>{
+                        $('.intro').addClass('intro_to');
+                    })
+                },
+                system_enter(){
+                    this.a_s(0,()=>{
+                        $('.system').removeClass('system_to');
+                    }).a(500,()=>{
+                        $('.intro').removeClass('intro_to');
+                    })
+                },
+                //介绍动画
+                introbox_enter(i){
+                    this.a_s(0,()=>{
+                        $('.introbox').eq(i).addClass('introbox_enter').removeClass('introbox_to');
+                    }).a(2000,()=>{
+                        $('.ball_img').eq(i).addClass('ball_img_enter');
+                    }).a(2000,()=>{
+                        $('.ball_name').eq(i).addClass('ball_name_to');
+                        $('.ball_img').eq(i).addClass('ball_img_stable');
+                    }).a(1000,()=>{
+                        $('.ball_intro').eq(i).addClass('ball_intro_enter');
+                    }).a(500,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_title').removeClass('ball_intro_title_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_title').removeClass('ball_intro_title_start');
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_info_p').eq(0).removeClass('ball_intro_info_p_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_name').removeClass('ball_intro_name_start');
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_process').eq(0).removeClass('ball_intro_process_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_attr').removeClass('ball_intro_attr_start');                        
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_info_p').eq(1).removeClass('ball_intro_info_p_start');
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_process').eq(1).removeClass('ball_intro_process_start');
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_info_p').eq(2).removeClass('ball_intro_info_p_start');
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_process').eq(2).removeClass('ball_intro_process_start');
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_info_p').eq(3).removeClass('ball_intro_info_p_start');
+                    }).a(200,()=>{
+                        $('.ball_intro_l').eq(i).find('.ball_intro_process').eq(3).removeClass('ball_intro_process_start');
+                    }).a(200,()=>{
+                        $('.ball_content').eq(i).removeClass('ball_content_start');
+                        this.fontIntervalEnter(i);
+                    })
+                },
+                introbox_to_up(i){
+                    this.a_s(0,()=>{
+                        $('.introbox').eq(i).removeClass('introbox_enter');
+                        $('.ball_img').eq(i).removeClass('ball_img_enter');
+                        $('.ball_name').eq(i).removeClass('ball_name_to');
+                        $('.ball_img').eq(i).removeClass('ball_img_stable');
+                        $('.ball_intro').eq(i).removeClass('ball_intro_enter');
+                        $('.ball_intro_l').eq(i).find('.ball_intro_title').addClass('ball_intro_title_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_title').addClass('ball_intro_title_start');
+                        $('.ball_intro_l').eq(i).find('.ball_intro_info_p').addClass('ball_intro_info_p_start');
+                        $('.ball_intro_l').eq(i).find('.ball_intro_process').addClass('ball_intro_process_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_name').addClass('ball_intro_name_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_attr').addClass('ball_intro_attr_start');  
+                        $('.ball_content').eq(i).addClass('ball_content_start');
+                        this.fontIntervalEnd(i);
+                    })
+                },
+                introbox_to_down(i){
+                    this.a_s(0,()=>{
+                        $('.introbox').eq(i).removeClass('introbox_enter').addClass('introbox_to');
+                        $('.ball_img').eq(i).removeClass('ball_img_enter');
+                        $('.ball_name').eq(i).removeClass('ball_name_to');
+                        $('.ball_img').eq(i).removeClass('ball_img_stable');
+                        $('.ball_intro').eq(i).removeClass('ball_intro_enter');
+                        $('.ball_intro_l').eq(i).find('.ball_intro_title').addClass('ball_intro_title_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_title').addClass('ball_intro_title_start');
+                        $('.ball_intro_l').eq(i).find('.ball_intro_info_p').addClass('ball_intro_info_p_start');
+                        $('.ball_intro_l').eq(i).find('.ball_intro_process').addClass('ball_intro_process_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_name').addClass('ball_intro_name_start');
+                        $('.ball_intro_r').eq(i).find('.ball_intro_attr').addClass('ball_intro_attr_start');  
+                        $('.ball_content').eq(i).addClass('ball_content_start');
+                        this.fontIntervalEnd(i);
+                    })
+                },
+                fontIntervalEnter(i){
+                    clearInterval(this.fontTimer);
+                    let j=0;
+                    let s=$('.ball_content').eq(i).find('span');
+                    this.fontTimer=setInterval(()=>{
+                        s.eq(j).removeClass('ball_content_span_start');
+                        if(j==s.length-1){
+                            clearInterval(this.fontTimer);
+                        }
+                        j++;
+                        console.log(j);
+                    },50);
+                },
+                fontIntervalEnd(i){
+                    clearInterval(this.fontTimer);
+                    $('.ball_content').eq(i).find('span').addClass('ball_content_span_start');
+                }
+            },
+        })
+    </script>
+</body>
+</html>

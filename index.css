@@ -1,0 +1,356 @@
+@font-face{
+    font-family: 'x';
+    src: url(./font/1.ttf);
+}
+/* html{
+    overflow-y: unset;
+} */
+*{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'x';
+}
+
+
+#particles-js{
+    position: absolute;
+    z-index: 10;
+    transition: all 4s;
+    opacity: 0;
+    position: fixed;
+}
+.top{
+    width: 100%;
+    height: 800px;
+    position: relative;
+}
+.space{
+    width: 100%;
+    height: 800px;
+    overflow: hidden;
+    position: fixed;
+}
+.intro{
+    position: absolute;
+    top: 0px;
+    right:280px;
+    bottom:0px;
+    margin: auto;
+    width: 400px;
+    height: 140px;
+    text-align: center;
+    font-size: 50px;
+    color: white;
+    font-family: Consolas,'微软雅黑' !important;
+    transition: all 4s;
+}
+.intro p{
+    height:70px;
+    line-height: 70px;
+    opacity: 0;
+    transform: translateY(200px);
+    transition: all 2s;
+}
+.people{
+    width: 12.5px;
+    height: 18px;
+    position: absolute;
+    animation: people 400s linear infinite;
+}
+@keyframes people{
+    0%{
+        left:75%;
+        top: -10%;
+        transform: rotate(0deg);
+    }
+    25%{
+        left:25%;
+        top:110%;
+        transform: rotate(2880deg);
+    }
+    50%{
+        left: 75%;
+        top: 110%;
+        transform: rotate(2880deg);
+    }
+    75%{
+        left:25%;
+        top:-10%;
+        transform: rotate(5760deg);
+    }
+    100%{
+        left:75%;
+        top: -10%;
+        transform: rotate(0deg);
+    }
+}
+.system{
+    width: 100%;
+    height: 600px;
+    top: 0px;
+    bottom: 0px;
+    margin: auto;
+    position: absolute;
+    transform-style: preserve-3d;
+    perspective-origin: 50% 0; 
+    transition: all 4s;
+    transform: translateX(-600px);
+}
+.orbit{
+    position: absolute;
+    transform-style: preserve-3d;
+    transform: rotateX(95deg) rotateY(-10deg) rotateZ(0deg);
+    animation: orbit 20s linear infinite;
+}
+.ball_box{
+    transform: rotateX(-90deg) rotateY(0deg);
+    transform-style: preserve-3d;
+    position: absolute;
+    
+}
+.ball{
+    animation: ball 20s linear infinite;
+    
+}
+.sun{
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    left:300px;
+    animation: sun_move 200s linear infinite;
+    margin-left: -300px;
+}
+.water{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left:300px;
+    top: 500px;
+    animation: ball 20s linear infinite;
+}
+.gold{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 400px;
+    top: 450px;
+
+}
+.fire{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 200px;
+    top: 400px;
+}
+.wood{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    left: 600px;
+    top: 400px;
+}
+.soil{
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 500px;
+    top: 20px;
+}
+.sky{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 800px;
+    top: 200px;
+}
+.sea{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 900px;
+    top: 400px;
+}
+.introbox{
+    width: 1300px;
+    height: 300px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    transform: translateY(1500px);
+    opacity: 0;
+    transition: all 2s;
+}
+.ball_name{
+    position: absolute;
+    width: 400px;
+    height: 70px;
+    line-height: 70px;
+    font-size: 70px;
+    text-align: center;
+    color: white;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    z-index: 10;
+    transition: all 2s;
+}
+.ball_img{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    margin: auto;
+    opacity: 0;
+    transition: all 2s;
+    transform: scale(0.2);
+}
+.ball_img_soil{
+    height: 200px !important;
+}
+.ball_intro{
+    position: absolute;
+    width: 800px;
+    height: 400px;
+    top: 0px;
+    bottom:0px;
+    left: 0px;
+    right: 0px;
+    margin: auto;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition:all 2s;
+    
+}
+.ball_intro_box{
+    width: 100%;
+    height: 200px;
+}
+.ball_intro_l{
+    width: 65%;
+    height: 200px;
+    float: left;
+}
+.ball_intro_r{
+    width: 30%;
+    height: 200px;
+    float: left;
+    margin-left: 5%;
+}
+.ball_intro_title{
+    height: 30px;
+    line-height: 30px;
+    font-size: 25px;
+    color: white;
+    border-bottom: 1px solid #444;
+    transition: all 2s;
+    opacity: 1;
+}
+.ball_intro_l ul{
+    width: 100%;
+    height: 160px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.ball_intro_info{
+    width: 100%;
+    height: 35px;
+    margin-top: 5px;
+}
+.ball_intro_process_box{
+    width: 100%;
+    height: 10px;
+    margin-top: 5px;
+}
+.ball_intro_process{
+    width: 80%;
+    height: 10px;
+    background: linear-gradient(to right,#4c40c3,#8f73e9);
+    border-radius: 2px;
+    transition: all 2s;
+}
+.ball_intro_info_p{
+    height: 20px;
+    margin-top: 5px;
+    line-height: 20px;
+    color: #63636e;
+    font-size: 16px;
+    transition: all 2s;
+    opacity: 1;
+}
+.ball_intro_name{
+    height: 100px;
+    line-height: 100px;
+    font-size: 70px;
+    color: #4c40c3;
+    transition: all 2s;
+    opacity: 1;
+}
+.ball_intro_attr{
+    height: 30px;
+    line-height: 30px;
+    color: #ccc;
+    font-size: 20px;
+    transition: all 2s;
+    opacity: 1;
+}
+.ball_content_box{
+    width: 100%;
+    height: 190px;
+    margin-top: 10px;
+}
+.ball_content{
+    width: 100%;
+    height: 190px;
+    transition: all 2s;
+    opacity: 1;
+}
+.ball_content_span{
+    height: 20px;
+    line-height: 20px;
+    opacity: 1;
+    color: white;
+    font-size: 18px;
+    transition: all 2s;
+    transform: translateY(0px);
+    display: inline-block;
+    padding-right: 5px;
+}
+@keyframes sun_move{
+    0%{
+        transform: rotate(0deg) scale(1);
+    }
+    50%{
+        transform: rotate(180deg) scale(0.8);
+    }
+    100%{
+        transform: rotate(360deg) scale(1);
+    }
+}
+@keyframes orbit{
+    0%{
+        transform: rotateX(80deg) rotateY(10deg) rotateZ(230deg);
+    }
+    100%{
+        transform: rotateX(80deg) rotateY(10deg) rotateZ(-130deg);
+    }
+}
+@keyframes ball{
+    0%{
+        transform: rotateX(0deg) rotateY(230deg) scale(1);
+    }
+    50%{
+        transform: rotateX(0deg) rotateY(50deg) scale(0.8);
+    }
+    100%{
+        transform: rotateX(0deg) rotateY(-130deg) scale(1);
+    }
+}
